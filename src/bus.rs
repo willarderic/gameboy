@@ -1,5 +1,3 @@
-use std::ops::Index;
-
 pub enum Region {
     FixedROM = 0x0000,
     SwitchableROM = 0x4000,
@@ -20,18 +18,13 @@ pub struct Memory {
     memory: [u8; 0xffff],
 }
 
+// Implements a default constructor for the Memory struct
+// Allows me to zero the memory in the array at the start
 impl Default for Memory {
     fn default() -> Memory {
         Memory {
             memory: [0; 0xffff],
         }
-    }
-}
-
-impl Index<u16> for Memory {
-    type Output = u8;
-    fn index(&self, i: u16) -> &Self::Output {
-        &self.memory[i as usize]
     }
 }
 
